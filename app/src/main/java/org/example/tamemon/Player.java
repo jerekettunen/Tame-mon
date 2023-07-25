@@ -15,4 +15,8 @@ public class Player {
         this.name = name;
         this.level = 1;
     }
+
+    public String getName() {
+        return name;
+    }
 }
