@@ -17,7 +17,7 @@ public class PlayerStorage {
 
     public void addPlayer(Player player) {
         players.add(player);
-    };
+    }
 
     public int getPosition(Player player) {
         return players.indexOf(player);

@@ -1,10 +1,13 @@
 package org.example.tamemon;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.material.tabs.TabLayout;
 
 public class PlayActivity extends AppCompatActivity {
     private Player player;
@@ -17,8 +20,8 @@ public class PlayActivity extends AppCompatActivity {
             player = PlayerStorage.getInstance().getPlayer(getIntent().getIntExtra("player", 0));
         }
 
-        TextView title = findViewById(R.id.txtPlayerTitle);
-        title.setText(player.getName());
+        TabLayout tabLayout = findViewById(R.id.tabArea);
+        TabPagerAdapter tabPagerAdapter = new TabPagerAdapter(this);
 
     }
 }

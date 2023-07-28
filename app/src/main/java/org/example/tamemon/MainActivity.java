@@ -36,10 +36,11 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.btnNewPlay){
                 fragment = new FragmentNewPlayer();
             } else if (id == R.id.btnInfo) {
-                fragment = new InfoFragment();
+                 fragment = new InfoFragment();
             } else if (id == R.id.btnContinue) {
                 Intent intent = new Intent(view.getContext(), PlayActivity.class);
                 startActivity(intent);
+                finish();
                 return;
             }
             
