@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class PlayerStorage {
     private static PlayerStorage singleton;
+    private int activePlayer;
     private ArrayList<Player> players = new ArrayList<>();
     public static PlayerStorage getInstance() {
         if (singleton == null) {
@@ -17,13 +18,14 @@ public class PlayerStorage {
 
     public void addPlayer(Player player) {
         players.add(player);
+        activePlayer = getPosition(player);
     }
 
     public int getPosition(Player player) {
         return players.indexOf(player);
     }
 
-    public Player getPlayer(int index) {
-        return players.get(index);
+    public Player getActivePlayer() {
+        return players.get(activePlayer);
     }
 }

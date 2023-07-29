@@ -11,4 +11,25 @@ public class Monster {
     private int level;
     private Item[] items = new Item[2];
     private int[] stats = new int[4]; // atk, def, acc, speed
+
+    public Monster() {
+        name = "test";
+        experience = 0;
+        level = 1;
+        for (int i = 0; i <= 3; i++) {
+            stats[i] = i;
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int[] getStats() {
+        return stats;
+    }
 }
