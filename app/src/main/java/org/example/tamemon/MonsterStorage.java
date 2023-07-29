@@ -1,6 +1,8 @@
 package org.example.tamemon;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MonsterStorage {
     private static int id = 0;
@@ -11,6 +13,14 @@ public class MonsterStorage {
     }
 
     public void addNewMonster() {
-        monsters.put(id, new Monster());
+        monsters.put(id++, new Monster());
+    }
+
+    public List<Monster> getList() {
+        return new ArrayList<Monster>(monsters.values());
+    }
+
+    public int getQty() {
+        return monsters.size();
     }
 }

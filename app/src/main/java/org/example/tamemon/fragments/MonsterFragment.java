@@ -13,14 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import org.example.tamemon.Monster;
 import org.example.tamemon.Player;
 import org.example.tamemon.PlayerStorage;
 import org.example.tamemon.R;
-import org.example.tamemon.fragments.placeholder.PlaceholderContent;
+
+import java.util.List;
 
 
 public class MonsterFragment extends Fragment {
-
+    private MonsterRecyclerViewAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,20 +35,23 @@ public class MonsterFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_monster_list, container, false);
         Context context = view.getContext();
+        Player player = PlayerStorage.getInstance().getActivePlayer();
+
         RecyclerView recyclerView = view.findViewById(R.id.rvMonsters);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new MonsterRecyclerViewAdapter(PlaceholderContent.ITEMS));
+        adapter = new MonsterRecyclerViewAdapter(getContext(), player.getMonsters());
+        recyclerView.setAdapter(adapter);
 
         Button btnNewMonster = view.findViewById(R.id.btnNewMonster);
         btnNewMonster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Player player = PlayerStorage.getInstance().getActivePlayer();
                 player.addMonster();
-
+                recyclerView.setAdapter(new MonsterRecyclerViewAdapter(getContext(), player.getMonsters()));
             }
-        });
 
+        });
         return view;
     }
+
 }

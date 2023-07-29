@@ -20,7 +20,7 @@ public class PlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play);
 
         if (getIntent() != null) {
-            player = PlayerStorage.getInstance().getPlayer(getIntent().getIntExtra("player", 0));
+            player = PlayerStorage.getInstance().getActivePlayer();
         }
 
         TabLayout tabLayout = findViewById(R.id.tabArea);

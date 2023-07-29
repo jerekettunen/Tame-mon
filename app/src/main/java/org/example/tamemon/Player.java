@@ -4,6 +4,7 @@ import android.content.ClipData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Player {
     private String name;
@@ -31,5 +32,13 @@ public class Player {
 
     public void addMonster() {
         monsters.addNewMonster();
+    }
+
+    public List<Monster> getMonstersList() {
+        return monsters.getList();
+    }
+
+    public int getMonsterQty() {
+        return monsters.getQty();
     }
 }
