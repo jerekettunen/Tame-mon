@@ -4,63 +4,102 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import org.example.tamemon.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PlayBattleFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class PlayBattleFragment extends Fragment {
+import java.util.ArrayList;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public PlayBattleFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PlayBattleFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PlayBattleFragment newInstance(String param1, String param2) {
-        PlayBattleFragment fragment = new PlayBattleFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+public class PlayBattleFragment extends Fragment implements View.OnClickListener {
+    private LinearLayout spinnerContainer;
+    private ArrayList<String> dummyList;
+    private ToggleButton battleType;
+    private int opponentLvl = 1;
+    private Button reduceLvl, increaseLvl;
+    private Spinner spinner, spinner2, spinner3;
+    private TextView txtOpponentLvl;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_play_battle, container, false);
+        View view = inflater.inflate(R.layout.fragment_play_battle, container, false);
+
+        spinnerContainer = view.findViewById(R.id.spinnerContainer);
+        battleType = view.findViewById(R.id.toggleBattleType);
+        reduceLvl = view.findViewById(R.id.btnReduceLvl);
+        reduceLvl.setOnClickListener(this);
+        increaseLvl = view.findViewById(R.id.btnIncreaseLvl);
+        increaseLvl.setOnClickListener(this);
+        txtOpponentLvl = view.findViewById(R.id.txtLvl);
+        txtOpponentLvl.setText(Integer.toString(opponentLvl));
+
+        dummyList = new ArrayList<>();
+
+        dummyList.add("This");
+        dummyList.add("Is");
+        dummyList.add("A");
+        dummyList.add("Test");
+
+        LinearLayout.LayoutParams spinnerLayoutParam = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+
+        spinnerLayoutParam.gravity = Gravity.CENTER;
+
+        spinner = new Spinner(getContext());
+        spinner2 = new Spinner(getContext());
+        spinner3 = new Spinner(getContext());
+        spinnerContainer.addView(spinner);
+
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, dummyList);
+        spinner.setAdapter(adapter);
+        spinner2.setAdapter(adapter);
+        spinner3.setAdapter(adapter);
+
+        battleType.setOnClickListener(this);
+
+        return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.btnIncreaseLvl) {
+            if (opponentLvl <= 99) {
+                opponentLvl++;
+                txtOpponentLvl.setText(Integer.toString(opponentLvl));
+            }
+        } else if (id == R.id.btnReduceLvl) {
+            if (opponentLvl > 1) {
+                opponentLvl--;
+                txtOpponentLvl.setText(Integer.toString(opponentLvl));
+            }
+
+        } else if (id == R.id.toggleBattleType) {
+            if (battleType.isChecked()){
+                spinnerContainer.removeView(spinner2);
+                spinnerContainer.removeView(spinner3);
+            } else {
+                spinnerContainer.addView(spinner2);
+                spinnerContainer.addView(spinner3);
+
+            }
+        }
     }
 }

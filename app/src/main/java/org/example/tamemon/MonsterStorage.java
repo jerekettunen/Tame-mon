@@ -13,7 +13,7 @@ public class MonsterStorage {
     }
 
     public void addNewMonster() {
-        monsters.put(id++, new Monster());
+        monsters.put(id++, new Monster(id));
     }
 
     public List<Monster> getList() {
@@ -22,5 +22,9 @@ public class MonsterStorage {
 
     public int getQty() {
         return monsters.size();
+    }
+
+    public void removeMonsterValue(int key) {
+        monsters.remove(key);
     }
 }

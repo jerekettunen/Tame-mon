@@ -1,14 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.PlayBattleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/spinnerContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="96dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toggleBattleType">
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="Opponent level"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ToggleButton
+            android:id="@+id/toggleBattleType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:checked="true"
+            android:text="ToggleButton"
+            android:textOff="3v3"
+            android:textOn="1v1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/txtLvl"
+            style="@style/Widget.Material3.MaterialTimePicker.Display.HelperText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#689F38"
+            android:fadingEdge="horizontal|vertical"
+            android:fadingEdgeLength="10dp"
+            android:text="1"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <Button
+            android:id="@+id/btnIncreaseLvl"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:insetLeft="-5dp"
+            android:insetRight="-5dp"
+            android:text="+"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/txtLvl"
+            app:layout_constraintStart_toEndOf="@+id/txtLvl"
+            app:layout_constraintTop_toTopOf="@+id/txtLvl"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/btnReduceLvl"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:insetLeft="-5dp"
+            android:insetRight="-5dp"
+            android:text="-"
+            app:iconPadding="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtLvl"
+            app:layout_constraintEnd_toStartOf="@+id/txtLvl"
+            app:layout_constraintTop_toTopOf="@+id/txtLvl" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

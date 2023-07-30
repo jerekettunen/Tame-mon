@@ -12,10 +12,11 @@ public class Monster {
     private Item[] items = new Item[2];
     private int[] stats = new int[4]; // atk, def, acc, speed
 
-    public Monster() {
+    public Monster(int id) {
         name = "test";
         experience = 0;
         level = 1;
+        this.id = id;
         for (int i = 0; i <= 3; i++) {
             stats[i] = i;
         }
@@ -31,5 +32,9 @@ public class Monster {
 
     public int[] getStats() {
         return stats;
+    }
+
+    public int getID() {
+        return id;
     }
 }
