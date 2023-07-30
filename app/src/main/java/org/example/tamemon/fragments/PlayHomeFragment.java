@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.example.tamemon.PlayActivity;
+import org.example.tamemon.PlayerStorage;
 import org.example.tamemon.R;
 
 
@@ -30,6 +31,7 @@ private Button btnMonster;
         View view = inflater.inflate(R.layout.fragment_play_home, container, false);
         Button btnMonster = view.findViewById(R.id.btnMonsters);
         Button btnInventory = view.findViewById(R.id.btnInventory);
+
 
         btnMonster.setOnClickListener(new View.OnClickListener() {
             @Override
