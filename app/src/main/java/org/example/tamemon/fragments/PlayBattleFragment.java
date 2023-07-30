@@ -18,7 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import org.example.tamemon.Monster;
+import org.example.tamemon.BattleActivity;
+import org.example.tamemon.Monsters.Monster;
 import org.example.tamemon.PlayerStorage;
 import org.example.tamemon.R;
 
@@ -182,7 +183,8 @@ public class PlayBattleFragment extends Fragment implements View.OnClickListener
 
             }
         } else if (id == R.id.btnBattleStart) {
-            Intent intent = new Intent();
+            Intent intent = new Intent(getActivity(), BattleActivity.class);
+            startActivity(intent);
         }
     }
 }

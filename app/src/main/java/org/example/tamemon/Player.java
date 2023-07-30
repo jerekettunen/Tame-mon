@@ -1,9 +1,8 @@
 package org.example.tamemon;
 
-import android.content.ClipData;
+import org.example.tamemon.Monsters.Monster;
+import org.example.tamemon.Monsters.MonsterStorage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Player {

@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="5dp"
             android:background="#00796B"
@@ -33,8 +33,8 @@
         <Button
             android:id="@+id/btnNewMonster"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="404dp"
-            android:layout_height="83dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginTop="1dp"
             android:layout_marginEnd="5dp"
@@ -45,19 +45,20 @@
             app:icon="@android:drawable/btn_star_big_on"
             app:iconGravity="start"
             app:iconPadding="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnMonstersBack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView3"
+        <ImageButton
+            android:id="@+id/btnMonstersBack"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:text="Qty"
-            android:textColor="#000000"
-            android:textColorHighlight="#000000"
-            app:layout_constraintEnd_toEndOf="@+id/btnNewMonster"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginEnd="16dp"
+            android:background="#00FFFFFF"
+            android:src="?attr/homeAsUpIndicator"
+            app:layout_constraintBottom_toBottomOf="@+id/btnNewMonster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btnNewMonster" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

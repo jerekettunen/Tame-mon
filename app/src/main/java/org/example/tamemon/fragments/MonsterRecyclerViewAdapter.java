@@ -5,16 +5,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import org.example.tamemon.Monster;
-import org.example.tamemon.MonsterStorage;
-import org.example.tamemon.PlayerStorage;
+import org.example.tamemon.Monsters.Monster;
+import org.example.tamemon.Monsters.MonsterStorage;
 import org.example.tamemon.R;
 
-import java.util.HashMap;
 import java.util.List;
 
 

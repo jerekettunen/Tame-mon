@@ -56,8 +56,22 @@ public class PlayActivity extends AppCompatActivity {
                         R.anim.slide_out  // popExit
                 )
                 .replace(R.id.playLayout, fragment)
+                .addToBackStack(null)
                 .commit();
+    }
 
+    @Override
+    public void onBackPressed() {
+
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        System.out.println(count);
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
 
     }
 }

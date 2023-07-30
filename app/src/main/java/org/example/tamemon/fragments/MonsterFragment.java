@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,13 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
-import org.example.tamemon.Monster;
 import org.example.tamemon.Player;
 import org.example.tamemon.PlayerStorage;
 import org.example.tamemon.R;
-
-import java.util.List;
 
 
 public class MonsterFragment extends Fragment {
@@ -27,7 +24,6 @@ public class MonsterFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         }
 
     @Override
@@ -41,7 +37,7 @@ public class MonsterFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         adapter = new MonsterRecyclerViewAdapter(getContext(), player.getMonsters());
         recyclerView.setAdapter(adapter);
-
+        ImageButton back = view.findViewById(R.id.btnMonstersBack);
         Button btnNewMonster = view.findViewById(R.id.btnNewMonster);
         btnNewMonster.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +46,13 @@ public class MonsterFragment extends Fragment {
                 recyclerView.setAdapter(new MonsterRecyclerViewAdapter(getContext(), player.getMonsters()));
             }
 
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
         });
         return view;
     }
