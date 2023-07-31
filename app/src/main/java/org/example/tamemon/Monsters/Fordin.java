@@ -8,8 +8,9 @@ public class Fordin extends Monster{
 
     public Fordin(int id) {
         super("Fordin", id);
-        icon = R.drawable.mon2_0;
-        stats = Arrays.asList(1,1,1,1); // atk, def, acc, speed
+        icon = R.drawable.mon3_0;
+        baseStats = Arrays.asList(19,4,1,2,2); // hp, atk, def, acc, speed
         type = "fire";
+        calculateStats();
     }
 }

@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import org.example.tamemon.BattleActivity;
+import org.example.tamemon.Enemy;
 import org.example.tamemon.Monsters.Monster;
 import org.example.tamemon.PlayerStorage;
 import org.example.tamemon.R;
@@ -34,6 +35,7 @@ public class PlayBattleFragment extends Fragment implements View.OnClickListener
     private List<Integer> selectedMonster = Arrays.asList(-1, -1, -1);
     private ToggleButton battleType;
     private int opponentLvl = 1;
+    private int opponentTeam = 1;
     private Button reduceLvl, increaseLvl, startBattle;
     private Spinner spinner, spinner2, spinner3;
     private TextView txtOpponentLvl;
@@ -69,7 +71,7 @@ public class PlayBattleFragment extends Fragment implements View.OnClickListener
         monsterNameList.add("");
 
         for (Monster monster : monsterList){
-            monsterNameList.add(monster.getName());
+            monsterNameList.add(monster.getName() + " ("+ monster.getLevel() + ")");
         }
 
         // Set spinner workflow
@@ -175,15 +177,19 @@ public class PlayBattleFragment extends Fragment implements View.OnClickListener
                 spinner3.setAdapter(null);
                 selectedMonster.set(1, -1);
                 selectedMonster.set(2, -1);
+                opponentTeam = 1;
+
             } else {
                 spinner2.setAdapter(adapter);
                 spinner3.setAdapter(adapter);
                 spinnerContainer.addView(spinner2);
                 spinnerContainer.addView(spinner3);
+                opponentTeam = 3;
 
             }
         } else if (id == R.id.btnBattleStart) {
             Intent intent = new Intent(getActivity(), BattleActivity.class);
+            Enemy enemy = new Enemy(opponentLvl,opponentTeam);
             startActivity(intent);
         }
     }

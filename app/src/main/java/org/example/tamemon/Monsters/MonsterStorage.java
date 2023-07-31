@@ -17,6 +17,11 @@ public class MonsterStorage {
         monsters.put(id++, monster);
     }
 
+    public void addNewMonster(int level) {
+        Monster monster = getRandomMonster();
+        monster.setLevel(level);
+    }
+
     private Monster getRandomMonster() {
         Monster monster = null;
         int range = 3; // amount of unique monsters available to 'tame'

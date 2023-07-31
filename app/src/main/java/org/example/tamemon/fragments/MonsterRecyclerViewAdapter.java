@@ -35,7 +35,24 @@ public class MonsterRecyclerViewAdapter extends RecyclerView.Adapter<MonsterView
 
     @Override
     public void onBindViewHolder(@NonNull MonsterViewHolder holder, int position) {
-        holder.title.setText(monsterList.get(position).getName());
+        Monster monster = monsterList.get(position);
+        List <Integer> stats = monster.getStats();
+        String setTxt;
+        holder.title.setText(monster.getName());
+        setTxt = "Attack: " + stats.get(1);
+        holder.atc.setText(setTxt);
+        setTxt = "Defense: " + stats.get(2);
+        holder.def.setText(setTxt);
+        setTxt = "Speed: " + stats.get(3);
+        holder.spd.setText(setTxt);
+        setTxt = "Accuracy: " + stats.get(4);
+        holder.acc.setText(setTxt);
+        setTxt = "HP: " + stats.get(0);
+        holder.hitPoints.setText(setTxt);
+        System.out.println(monster.getLevel());
+        holder.lvl.setText(Integer.toString(monster.getLevel()));
+        holder.icon.setImageResource(monster.getIcon());
+
         // holder.details.setText(monsters.get(position).getStats());
 
     }

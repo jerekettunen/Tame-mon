@@ -9,7 +9,8 @@ public class Kroki extends Monster {
     public Kroki(int id) {
         super("Kroki", id);
         icon = R.drawable.mon2_0;
-        stats = Arrays.asList(1,1,1,1); // atk, def, acc, speed
+        baseStats = Arrays.asList(25,2,3,2,1); // hp, atk, def, acc, speed
         type = "water";
+        calculateStats();
     }
 }
