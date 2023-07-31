@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Player implements Serializable {
     private String name;
+    private int wins, losses;
     private MonsterStorage monsters = new MonsterStorage();
     // private ItemStorage items = new ItemStorage();
     private int level;
@@ -15,6 +16,8 @@ public class Player implements Serializable {
     public Player(String name) {
         this.name = name;
         this.level = 1;
+        wins = 0;
+        losses = 0;
 
     }
 
@@ -37,5 +40,19 @@ public class Player implements Serializable {
 
     public int getMonsterQty() {
         return monsters.getQty();
+    }
+
+    public void addLoss() { losses++;
+    }
+
+    public void addWin() { wins++;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public int getLosses() {
+        return losses;
     }
 }

@@ -2,6 +2,7 @@ package org.example.tamemon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -171,6 +172,25 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                 " acc:" + enemyStats.get(3)+
                 " speed:" + enemyStats.get(4);
         eStats.setText(eStatString);
+
+        checkWin();
+    }
+
+    public void checkWin(){
+        boolean finish = false;
+        if (playerStats.get(0) <= 0 && enemyStats.get(0) > 0){
+            PlayerStorage.getInstance().getActivePlayer().addLoss();
+            finish = true;
+        } else if (playerStats.get(0) > 0 && enemyStats.get(0) <= 0) {
+            PlayerStorage.getInstance().getActivePlayer().addWin();
+            finish = true;
+        }
+
+        if (finish){
+            Intent intent = new Intent(this, PlayActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
 }
