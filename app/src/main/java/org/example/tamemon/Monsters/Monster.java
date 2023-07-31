@@ -3,19 +3,21 @@ package org.example.tamemon.Monsters;
 import org.example.tamemon.Item;
 import org.example.tamemon.Move;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class Monster {
     protected String name;
     protected int id;
-    protected Move[] moves = new Move[2];
+    protected final List<Move> moves = new ArrayList<>(2);
     protected String type; //
     protected int experience;
     protected int level;
     protected Item[] items = new Item[2];
     protected List<Integer> baseStats; // hp, atk, def, acc, speed
     protected List<Integer> stats;
+    protected List<Integer> battleModifiers;
     protected int icon;
 
     public Monster(String name, int id) {
@@ -24,6 +26,7 @@ public abstract class Monster {
         level = 1;
         this.id = id;
         stats = Arrays.asList(1,1,1,1,1);
+        battleModifiers = Arrays.asList(0,0,0,0,0);
     }
 
     public String getName() {
@@ -76,5 +79,30 @@ public abstract class Monster {
     public void setLevel(int level) {
         this.level = level;
         calculateStats();
+    }
+
+
+    public Move getMove(int i) {
+        return moves.get(i);
+    }
+
+    public void moveAction(List<Integer> stats, Move move) {
+        int kind = move.getKind();
+        // attack first
+        if (kind == 0){
+            int damage;
+            if (this.type == "grass" && move.getType() == "fire"){
+                damage = move.getPower() + stats.get(1) * 2 - this.stats.get(2);
+            } else if (this.type == "fire" && move.getType() == "water") {
+                damage = move.getPower() + stats.get(1) * 2 - this.stats.get(2);
+            } else if (this.type == "water" && move.getType() == "grass") {
+                damage = move.getPower() + stats.get(1) * 2 - this.stats.get(2);
+            } else {
+                damage = move.getPower() + stats.get(1) - this.stats.get(2);
+            }
+            battleModifiers.set(0, battleModifiers.get(0)+damage);
+        } else { //rest are modifiers
+            battleModifiers.set(kind, battleModifiers.get(kind) + move.getPower());
+        }
     }
 }

@@ -22,4 +22,14 @@ public class Enemy {
     public int getLevel() {
         return level;
     }
+
+    public List<Monster> getMonsterList() {
+        return monsterList;
+    }
+
+    public int getMove() {
+        int range = 2; // random value 1 or 2 to attack or use special move
+        int result = (int)(Math.random() * range)+1;
+        return result;
+    }
 }
