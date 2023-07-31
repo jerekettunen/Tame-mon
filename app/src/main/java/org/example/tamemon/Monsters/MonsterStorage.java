@@ -17,10 +17,6 @@ public class MonsterStorage {
         monsters.put(id++, monster);
     }
 
-    public void addNewMonster(int level) {
-        Monster monster = getRandomMonster();
-        monster.setLevel(level);
-    }
 
     private Monster getRandomMonster() {
         Monster monster = null;
@@ -52,5 +48,11 @@ public class MonsterStorage {
 
     public void removeMonsterValue(int key) {
         monsters.remove(key);
+    }
+
+    public void addNewMonsterWithLvl(int level) {
+        Monster monster = getRandomMonster();
+        monster.setLevel(level);
+        monsters.put(id++, monster);
     }
 }

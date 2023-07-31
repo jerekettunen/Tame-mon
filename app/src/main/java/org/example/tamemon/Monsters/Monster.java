@@ -23,7 +23,7 @@ public abstract class Monster {
         experience = 0;
         level = 1;
         this.id = id;
-        baseStats = Arrays.asList(1,1,1,1);
+        stats = Arrays.asList(1,1,1,1,1);
     }
 
     public String getName() {
