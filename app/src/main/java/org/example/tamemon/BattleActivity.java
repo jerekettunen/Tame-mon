@@ -133,7 +133,6 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
     public void turnHandler(int playerMove) {
         int enemyMove = enemy.getMove();
-        System.out.println("Testi:" + (playerMove-1));
         Monster pMonster = playerMonsters.get(positions.get(0));
         if (playerMove == 0) {
             pMonster.moveAction(enemyActiveMonster.getStats(), enemyActiveMonster.getMove(enemyMove-1));
