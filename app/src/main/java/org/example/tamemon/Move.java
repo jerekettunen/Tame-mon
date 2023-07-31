@@ -12,6 +12,7 @@ public class Move {
         this.title = title;
         this.power = power;
         this.type = type;
+        this.kind = kind;
     }
 
     public String getTitle() {

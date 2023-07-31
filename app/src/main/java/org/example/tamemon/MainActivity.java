@@ -18,13 +18,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        PlayerStorage.getInstance().loadUsers(MainActivity.this);
+
         Button btnContinue = findViewById(R.id.btnContinue);
+        btnContinue.setAlpha(0);
         Button btnNewPlay = findViewById(R.id.btnNewPlay);
         Button info = findViewById(R.id.btnInfo);
 
-        btnContinue.setOnClickListener(listener);
         btnNewPlay.setOnClickListener(listener);
         info.setOnClickListener(listener);
+
     }
 
 

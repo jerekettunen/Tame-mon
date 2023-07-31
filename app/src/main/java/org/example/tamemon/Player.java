@@ -3,12 +3,13 @@ package org.example.tamemon;
 import org.example.tamemon.Monsters.Monster;
 import org.example.tamemon.Monsters.MonsterStorage;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Player {
+public class Player implements Serializable {
     private String name;
     private MonsterStorage monsters = new MonsterStorage();
-    private ItemStorage items = new ItemStorage();
+    // private ItemStorage items = new ItemStorage();
     private int level;
 
     public Player(String name) {
@@ -25,9 +26,6 @@ public class Player {
         return monsters;
     }
 
-    public ItemStorage getItems() {
-        return items;
-    }
 
     public void addMonster() {
         monsters.addNewMonster();

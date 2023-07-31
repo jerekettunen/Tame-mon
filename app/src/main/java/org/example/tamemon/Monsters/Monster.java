@@ -1,16 +1,19 @@
 package org.example.tamemon.Monsters;
 
+import android.widget.TextView;
+
 import org.example.tamemon.Item;
 import org.example.tamemon.Move;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class Monster {
+public abstract class Monster implements Serializable {
     protected String name;
     protected int id;
-    protected final List<Move> moves = new ArrayList<>(2);
+    protected List<Move> moves;
     protected String type; //
     protected int experience;
     protected int level;
@@ -27,6 +30,7 @@ public abstract class Monster {
         this.id = id;
         stats = Arrays.asList(1,1,1,1,1);
         battleModifiers = Arrays.asList(0,0,0,0,0);
+        moves = new ArrayList<>();
     }
 
     public String getName() {
@@ -88,21 +92,33 @@ public abstract class Monster {
 
     public void moveAction(List<Integer> stats, Move move) {
         int kind = move.getKind();
+        System.out.println("in MoveAct");
+        System.out.println(kind);
         // attack first
         if (kind == 0){
             int damage;
             if (this.type == "grass" && move.getType() == "fire"){
-                damage = move.getPower() + stats.get(1) * 2 - this.stats.get(2);
+                damage = move.getPower() + stats.get(1) * 2;
             } else if (this.type == "fire" && move.getType() == "water") {
-                damage = move.getPower() + stats.get(1) * 2 - this.stats.get(2);
+                damage = move.getPower() + stats.get(1) * 2;
             } else if (this.type == "water" && move.getType() == "grass") {
-                damage = move.getPower() + stats.get(1) * 2 - this.stats.get(2);
+                damage = move.getPower() + stats.get(1) * 2;
             } else {
-                damage = move.getPower() + stats.get(1) - this.stats.get(2);
+                damage = move.getPower() + stats.get(1);
             }
+            damage = damage - (getModifiedStats().get(2)/2);
             battleModifiers.set(0, battleModifiers.get(0)+damage);
         } else { //rest are modifiers
-            battleModifiers.set(kind, battleModifiers.get(kind) + move.getPower());
+            battleModifiers.set(kind, battleModifiers.get(kind) - move.getPower());
+            System.out.print("modified");
         }
+    }
+
+    public List<Integer> getModifiedStats() {
+        List<Integer> modifiedStats = new ArrayList<>(5);
+        for (int i = 0 ; i < stats.size(); i++){
+            modifiedStats.add(stats.get(i)-battleModifiers.get(i));
+        }
+        return modifiedStats;
     }
 }

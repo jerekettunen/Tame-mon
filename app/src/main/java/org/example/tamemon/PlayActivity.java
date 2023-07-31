@@ -68,7 +68,9 @@ public class PlayActivity extends AppCompatActivity {
 
         if (count == 0) {
             super.onBackPressed();
-            //additional code
+            PlayerStorage.getInstance().savePlayers(PlayActivity.this);
+            System.out.println("saved");
+
         } else {
             getSupportFragmentManager().popBackStack();
         }

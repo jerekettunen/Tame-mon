@@ -1,10 +1,11 @@
 package org.example.tamemon.Monsters;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MonsterStorage {
+public class MonsterStorage implements Serializable {
     private static int id = 0;
     private HashMap<Integer, Monster> monsters = new HashMap<>();
 

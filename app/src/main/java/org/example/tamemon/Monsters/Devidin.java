@@ -13,7 +13,7 @@ public class Devidin extends Monster{
         baseStats = Arrays.asList(22,2,2,2,3); // hp, atk, def, acc, speed
         type = "grass";
         calculateStats();
-        moves.set(0,new Move((type + " punch"), 3, type, 0));
-        moves.set(1, new Move("decrease speed",-1, "special", 4));
+        moves.add(new Move((type + " punch"), 3, type, 0));
+        moves.add(new Move("decrease speed",-1, "special", 4));
     }
 }

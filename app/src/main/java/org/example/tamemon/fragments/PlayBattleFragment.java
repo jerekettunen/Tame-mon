@@ -209,6 +209,8 @@ public class PlayBattleFragment extends Fragment implements View.OnClickListener
             Helper.getInstance().setBattleMonsters(selectedMonsterList);
 
             startActivity(intent);
+            getActivity().finish();
+
         } else if (id == R.id.btnBattleSelectRefresh) {
             updateMonsterList();
             adapter = setAdapter();
@@ -227,6 +229,5 @@ public class PlayBattleFragment extends Fragment implements View.OnClickListener
         for (Monster monster : monsterList){
             monsterNameList.add(monster.getName() + " ("+ monster.getLevel() + ")");
         }
-        System.out.println("updated");
     }
 }

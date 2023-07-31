@@ -27,10 +27,11 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private LinearLayout switchContainer;
     private ImageButton switch1, switch2;
     private Button attack, special;
-    private TextView playHp, enemyHp, playName, enemyName, playLvl, enemyLvl, move1, move2;
+    private TextView playHp, enemyHp, playName, enemyName, playLvl, enemyLvl, move1, move2, pStats, eStats;
     public static final Map<String, Integer> ITEM_MAP = new HashMap<String, Integer>();
     private List<Integer> positions = Arrays.asList(0,1,2);
     private Monster enemyActiveMonster;
+    private List<Integer> playerStats, enemyStats;
 
 
 
@@ -63,7 +64,10 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         enemyLvl = findViewById(R.id.enemyLvl);
         move1 = findViewById(R.id.txtMove1);
         move2 = findViewById(R.id.txtMove2);
+        pStats = findViewById(R.id.playStats);
+        eStats = findViewById(R.id.enemyStats);
 
+        updater();
 
         if (playerMonsters.size() > 1){
             switchContainer = findViewById(R.id.switchButtonLayout);
@@ -102,11 +106,12 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         int id = view.getId();
+        System.out.println("test");
         if (id == R.id.btnAtkMove){
-            //do something
+            System.out.println("attack");
             turnHandler(1);
         } else if (id == R.id.btnSpcMove) {
-            //do something
+            System.out.println("special");
             turnHandler(2);
         } else if (id == ITEM_MAP.get("key1")) {
             int temp = positions.get(0);
@@ -127,22 +132,45 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
     public void turnHandler(int playerMove) {
         int enemyMove = enemy.getMove();
+        System.out.println("Testi:" + (playerMove-1));
         Monster pMonster = playerMonsters.get(positions.get(0));
         if (playerMove == 0) {
             pMonster.moveAction(enemyActiveMonster.getStats(), enemyActiveMonster.getMove(enemyMove-1));
         } else {
-            if (pMonster.getStats().get(5) < enemyActiveMonster.getStats().get(5)){
+            if (pMonster.getModifiedStats().get(4) < enemyActiveMonster.getModifiedStats().get(4)){
                 pMonster.moveAction(enemyActiveMonster.getStats(), enemyActiveMonster.getMove(enemyMove-1));
-                enemyActiveMonster.moveAction(pMonster.getStats(), pMonster.getMove(enemyMove-1));
+                enemyActiveMonster.moveAction(pMonster.getStats(), pMonster.getMove(playerMove-1));
             } else {
-                enemyActiveMonster.moveAction(pMonster.getStats(), pMonster.getMove(enemyMove-1));
+                enemyActiveMonster.moveAction(pMonster.getStats(), pMonster.getMove(playerMove-1));
                 pMonster.moveAction(enemyActiveMonster.getStats(), enemyActiveMonster.getMove(enemyMove-1));
             }
         }
+        updater();
     }
 
     public void updater() {
+        Monster pMonster = playerMonsters.get(positions.get(0));
+        playerStats = pMonster.getModifiedStats();
+        enemyStats = enemyActiveMonster.getModifiedStats();
 
+        playHp.setText(Integer.toString(playerStats.get(0)));
+        enemyHp.setText(Integer.toString(enemyStats.get(0)));
+        playName.setText(pMonster.getName());
+        enemyName.setText(enemyActiveMonster.getName());
+        playLvl.setText(Integer.toString(pMonster.getLevel()));
+        enemyLvl.setText(Integer.toString(pMonster.getLevel()));
+        move1.setText(pMonster.getMove(0).getTitle());
+        move2.setText(pMonster.getMove(1).getTitle());
+        String pStatString = "atk:" + playerStats.get(1) +
+                " def:" + playerStats.get(2)+
+                " acc:" + playerStats.get(3)+
+                " speed:" + playerStats.get(4);
+        pStats.setText(pStatString);
+        String eStatString = "atk:" + enemyStats.get(1) +
+                " def:" + enemyStats.get(2)+
+                " acc:" + enemyStats.get(3)+
+                " speed:" + enemyStats.get(4);
+        eStats.setText(eStatString);
     }
 
 }
