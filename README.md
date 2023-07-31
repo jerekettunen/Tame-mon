@@ -31,4 +31,5 @@ Implementoitu monimutkaisempi taistelulogiikka, jota on helppo laajentaa
 - Mahdollisuus eri liikkeille
 - Liikkeillä moninaisia vaikutuksia
 - Olentojen vaihto mahdollisuus 3v3 taistelussa
-- 
+
+Linkki demovideoon löytyy "demo" tekstitiedostosta, mikäli saa latauduttua.
